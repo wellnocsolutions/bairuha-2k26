@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Calendar, Heart } from 'lucide-react';
+import { MapPin, Calendar, ExternalLink } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -21,10 +21,24 @@ export default function Footer() {
           സംഘാടനം: <strong className="text-slate-700">മദീനത്തുല് ഇല്മ് ദർസ്</strong> • ഒഫീഷ്യൽ ക്യാമ്പയിൻ പോസ്റ്റർ നിർമ്മാതാവ്
         </p>
 
-        <p className="text-[11px] text-slate-400">
-          © 2026 Bairuha Meelad Conference. All rights reserved.
-        </p>
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-4 text-[11px] text-slate-400">
+          <span>© 2026 Bairuha Meelad Conference. All rights reserved.</span>
+          <span className="hidden sm:inline">•</span>
+          <div className="flex items-center gap-1 text-slate-500 font-medium">
+            <span>Technology Partner:</span>
+            <a
+              href="https://wellnoc.com/solutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 font-semibold hover:text-emerald-800 hover:underline inline-flex items-center gap-0.5 transition-colors"
+            >
+              Wellnoc Solutions
+              <ExternalLink className="w-3 h-3 text-emerald-600 ml-0.5 opacity-70" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
 }
+
