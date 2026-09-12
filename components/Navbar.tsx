@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Share2, Sparkles, Check } from 'lucide-react';
+import { Share2, Check } from 'lucide-react';
 
 export default function Navbar() {
   const [copied, setCopied] = useState(false);
@@ -29,24 +29,19 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
       <div className="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
-        {/* Brand Logo & Event Tag */}
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-emerald-800 to-teal-600 flex items-center justify-center text-white shadow-md shadow-emerald-900/10 font-extrabold text-sm sm:text-base tracking-wider">
-            ബ
+        {/* Brand Event Tag */}
+        <div>
+          <div className="flex items-center gap-1.5">
+            <span className="font-extrabold text-sm sm:text-base text-slate-900 tracking-tight leading-none">
+              ബൈറുഹാ 2026
+            </span>
+            <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+              Official
+            </span>
           </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-extrabold text-sm sm:text-base text-slate-900 tracking-tight leading-none">
-                ബൈറുഹാ 2026
-              </span>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
-                Official
-              </span>
-            </div>
-            <p className="text-[10px] sm:text-xs text-slate-500 font-medium leading-none mt-0.5">
-              മദീനത്തുൽ ഇൽമ് ദർസ്
-            </p>
-          </div>
+          <p className="text-[10px] sm:text-xs text-slate-500 font-medium leading-none mt-1">
+            മദീനത്തുൽ ഇൽമ് ദർസ്
+          </p>
         </div>
 
         {/* Action Controls: Privacy Badge + Share */}
