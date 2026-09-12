@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Share2, Check } from 'lucide-react';
+import { Share2, Check, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [copied, setCopied] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleShare = async () => {
     const currentUrl = typeof window !== 'undefined' && window.location.href ? window.location.href : 'https://bairuha-2k26.vercel.app/';
@@ -27,13 +28,22 @@ export default function Navbar() {
     }
   };
 
+  const navLinks = [
+    { label: 'പോസ്റ്റർ', href: '#poster-maker' },
+    { label: 'കാര്യപരിപാടികൾ', href: '#schedule' },
+    { label: 'വേദി', href: '#venue' },
+    { label: 'ലൈവ്', href: '#live' },
+    { label: 'ദുആ വസിയ്യത്ത്', href: '#dua' },
+    { label: 'ദർസ്', href: '#about' },
+  ];
+
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
       <div className="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
         {/* Brand Event Tag */}
-        <div>
+        <a href="#poster-maker" className="flex flex-col group">
           <div className="flex items-center gap-1.5">
-            <span className="font-extrabold text-sm sm:text-base text-slate-900 tracking-tight leading-none">
+            <span className="font-extrabold text-sm sm:text-base text-slate-900 tracking-tight leading-none group-hover:text-emerald-700 transition-colors">
               ബൈറുഹാ 2026
             </span>
             <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
@@ -43,15 +53,23 @@ export default function Navbar() {
           <p className="text-[10px] sm:text-xs text-slate-500 font-medium leading-none mt-1">
             മദീനത്തുൽ ഇൽമ് ദർസ്
           </p>
-        </div>
+        </a>
 
-        {/* Action Controls: Privacy Badge + Share */}
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-emerald-800 hover:bg-emerald-50 transition-all"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Action Controls: Share + Mobile Hamburger */}
         <div className="flex items-center gap-1.5 sm:gap-2.5">
-          <div className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            100% Client-Side Privacy
-          </div>
-
           <button
             type="button"
             onClick={handleShare}
@@ -70,8 +88,34 @@ export default function Navbar() {
               </>
             )}
           </button>
+
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Dropdown */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-4 py-3 space-y-1 shadow-lg animate-in slide-in-from-top-2">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-xl text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 }

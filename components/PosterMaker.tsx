@@ -504,7 +504,7 @@ export default function PosterMaker() {
   }, [currentTemplate]);
 
   return (
-    <div className="w-full">
+    <div id="poster-maker" className="w-full scroll-mt-20">
       {/* Hidden File Input */}
       <input
         ref={fileInputRef}
