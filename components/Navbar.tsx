@@ -7,10 +7,11 @@ export default function Navbar() {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
+    const currentUrl = typeof window !== 'undefined' && window.location.href ? window.location.href : 'https://bairuha-2k26.vercel.app/';
     const shareData = {
       title: 'ബൈറുഹാ മീലാദ് കോൺഫ്രൻസ് 2026 | ഒഫീഷ്യൽ പോസ്റ്റർ മേക്കർ',
-      text: '✨ മദീനത്തുല് ഇല്മ് ദര്സ് - മീലാദ് കോൺഫ്രൻസ് & ബൈറുഹാ ഗ്രാൻഡ് ഫിനാലെ (2026 സെപ്റ്റംബർ 17, വ്യാഴം 4 PM).\n\nനിങ്ങളുടെ ഫോട്ടോയും പേരും ചേർത്തുള്ള ഒഫീഷ്യൽ പോസ്റ്റർ തയ്യാറാക്കൂ:',
-      url: typeof window !== 'undefined' ? window.location.href : '',
+      text: 'മദീനത്തുല് ഇല്മ് ദർസ് - മീലാദ് കോൺഫ്രൻസ് & ബൈറുഹാ ഗ്രാൻഡ് ഫിനാലെ (2026 സെപ്റ്റംബർ 17, വ്യാഴം 4 PM).\n\nനിങ്ങളുടെ ഫോട്ടോയും പേരും ചേർത്തുള്ള ഒഫീഷ്യൽ പോസ്റ്റർ തയ്യാറാക്കൂ:',
+      url: currentUrl,
     };
 
     if (navigator.share) {

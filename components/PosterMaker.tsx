@@ -468,11 +468,28 @@ export default function PosterMaker() {
     }, 100);
   };
 
-  // WhatsApp Share Text
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const whatsappShareText = encodeURIComponent(
-    `✨ മദീനത്തുല് ഇല്മ് ദര്സ് - മീലാദ് കോൺഫ്രൻസ് & ബൈറുഹാ ഗ്രാൻഡ് ഫിനാലെ (2026 സെപ്റ്റംബർ 17, വ്യാഴം 4 PM).\n\nനിങ്ങളുടെ ഫോട്ടോയും പേരും ചേർത്തുള്ള ഒഫീഷ്യൽ പോസ്റ്റർ തയ്യാറാക്കൂ:\n${shareUrl}`
-  );
+  // WhatsApp Share State & Handler
+  const [shareUrl, setShareUrl] = useState('https://bairuha-2k26.vercel.app/');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.href) {
+      setShareUrl(window.location.href);
+    }
+  }, []);
+
+  const whatsappShareText = useMemo(() => {
+    return encodeURIComponent(
+      `മദീനത്തുല് ഇല്മ് ദർസ് - മീലാദ് കോൺഫ്രൻസ് & ബൈറുഹാ ഗ്രാൻഡ് ഫിനാലെ (2026 സെപ്റ്റംബർ 17, വ്യാഴം 4 PM).\n\nനിങ്ങളുടെ ഫോട്ടോയും പേരും ചേർത്തുള്ള ഒഫീഷ്യൽ പോസ്റ്റർ തയ്യാറാക്കൂ:\n${shareUrl}`
+    );
+  }, [shareUrl]);
+
+  const handleWhatsAppShare = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const url = typeof window !== 'undefined' && window.location.href ? window.location.href : shareUrl;
+    const message = `മദീനത്തുല് ഇല്മ് ദർസ് - മീലാദ് കോൺഫ്രൻസ് & ബൈറുഹാ ഗ്രാൻഡ് ഫിനാലെ (2026 സെപ്റ്റംബർ 17, വ്യാഴം 4 PM).\n\nനിങ്ങളുടെ ഫോട്ടോയും പേരും ചേർത്തുള്ള ഒഫീഷ്യൽ പോസ്റ്റർ തയ്യാറാക്കൂ:\n${url}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
 
   // Dynamic hotspot style on the poster circle
   const hotspotStyle = useMemo(() => {
@@ -793,6 +810,7 @@ export default function PosterMaker() {
 
               <a
                 href={`https://api.whatsapp.com/send?text=${whatsappShareText}`}
+                onClick={handleWhatsAppShare}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm text-emerald-800 bg-emerald-100/70 hover:bg-emerald-100 border border-emerald-300 transition-all flex items-center justify-center gap-2 shadow-xs cursor-pointer"
@@ -812,7 +830,7 @@ export default function PosterMaker() {
                 <li>• <strong>പരിപാടി:</strong> മീലാദ് കോൺഫ്രൻസ് & ബൈറുഹാ ഗ്രാൻഡ് ഫിനാലെ</li>
                 <li>• <strong>തിയ്യതി & സമയം:</strong> 2026 സെപ്റ്റംബർ 17, വ്യാഴം 4 PM</li>
                 <li>• <strong>വേദി:</strong> ഖൈമ അബൂത്വല്ഹ, SKY LINE BANQUETS ചെർക്കള</li>
-                <li>• <strong>സംഘാടനം:</strong> മദീനത്തുല് ഇല്മ് ദര്സ്</li>
+                <li>• <strong>സംഘാടനം:</strong> മദീനത്തുല് ഇല്മ് ദർസ്</li>
               </ul>
             </div>
 

@@ -18,7 +18,7 @@ export default function Footer() {
         </div>
 
         <p className="text-xs text-slate-500 font-medium">
-          സംഘാടനം: <strong className="text-slate-700">മദീനത്തുല് ഇല്മ് ദര്സ്</strong> • ഒഫീഷ്യൽ ക്യാമ്പയിൻ പോസ്റ്റർ നിർമ്മാതാവ്
+          സംഘാടനം: <strong className="text-slate-700">മദീനത്തുല് ഇല്മ് ദർസ്</strong> • ഒഫീഷ്യൽ ക്യാമ്പയിൻ പോസ്റ്റർ നിർമ്മാതാവ്
         </p>
 
         <p className="text-[11px] text-slate-400">
